@@ -1,52 +1,44 @@
 console.log("Welcome to the Rock Paper Scissors Game!");
 
-// function called getComputerChoice()
-// will return a random choice from the array ['rock', 'paper', 'scissors']
-// display option in console.log
-
-// console.log(getComputerChoice());
-
-// function should take two parameters - the playerSelection and computerSelection
-// then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
-// Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
-// return result
-
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
 
   if (playerSelection === computerSelection) {
-    return "It's a tie!";
+    message = "It's a tie!";
+    return "tie";
   } else if (playerSelection === "rock") {
     if (computerSelection === "paper") {
-      return "You lose! Paper beats Rock";
+      message = "You lose! Paper beats Rock";
+      return false;
     } else {
-      return "You win! Rock beats Scissors";
+      message = "You win! Rock beats Scissors";
+      return true;
     }
   } else if (playerSelection === "paper") {
     if (computerSelection === "scissors") {
-      return "You lose! Scissors beats Paper";
+      message = "You lose! Scissors beats Paper";
+      return false;
     } else {
-      return "You win! Paper beats Rock";
+      message = "You win! Paper beats Rock";
+      return true;
     }
   } else if (playerSelection === "scissors") {
     if (computerSelection === "rock") {
-      return "You lose! Rock beats Scissors";
+      message = "You lose! Rock beats Scissors";
+      return false;
     } else {
-      return "You win! Scissors beats Paper";
+      message = "You win! Scissors beats Paper";
+      return true;
     }
   }
 }
 
-// let playerSelection = "rock";
-// console.log(playRound(playerSelection, getComputerChoice()));
-
-// function game() { playRound() } , play round 5 times
-// keep the score
-// report as winner or loser
-
 const choices = ["rock", "paper", "scissors"];
 let round = 0;
+let playerScore = 0;
+let computerScore = 0;
+let message = "";
 
 function getComputerChoice() {
   const computersChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -63,7 +55,21 @@ function game() {
       continue;
     }
 
-    playRound(playerSelection, getComputerChoice());
+    let roundResult = playRound(playerSelection, getComputerChoice());
+
+    alert(message);
+    if (roundResult === "tie") {
+      continue;
+    }
+
+    if (roundResult === false) {
+      computerScore++;
+    } else {
+      playerScore++;
+    }
+
+    console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
+
     round++;
   }
 }
