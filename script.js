@@ -91,7 +91,6 @@ function playRound() {
 function reset() {
   playerScore = 0;
   computerScore = 0;
-  debugger;
   announcement.textContent = "Let the games begin!";
   playerScoreDisplay.textContent = playerScore;
   computerScoreDisplay.textContent = computerScore;
